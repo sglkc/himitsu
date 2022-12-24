@@ -22,7 +22,7 @@ function App() {
         <Theme />
       </nav>
       <Form className="mb-4" />
-      <main className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <main className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         { posts.map((post: Post, i) => <Post key={i} {...post} />) }
       </main>
       <Footer />
