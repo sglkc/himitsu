@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Form from './components/Form';
 import Post from './components/Post';
 import Theme from './components/Theme';
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <Theme />
+      <Form className="mb-4" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         { posts.map((post: Post, i) => <Post key={i} {...post} />) }
       </div>
