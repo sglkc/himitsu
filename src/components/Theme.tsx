@@ -16,7 +16,7 @@ export default function Theme() {
   return (
     <>
       <button onClick={() => setDark(!dark)}>
-        { dark ? <Sun size={32} color="white" /> : <Moon size={32} /> }
+        { dark ? <Moon size={32} color="white" /> : <Sun size={32} /> }
       </button>
     </>
   );
