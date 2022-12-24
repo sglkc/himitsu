@@ -17,13 +17,13 @@ function App() {
 
   return (
     <>
-      <nav className="mb-8 flex justify-between sm:justify-evenly gap-4">
+      <nav className="flex justify-between sm:justify-evenly gap-4">
         <h1 className="my-auto text-xl font-bold">himitsu | ヒミツ</h1>
         <Theme />
       </nav>
-      <Form className="mb-4" />
-      <main className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        { posts.map((post: Post, i) => <Post key={i} {...post} />) }
+      <Form />
+      <main className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        { posts.map((post: Post) => <Post key={post._id} {...post} />) }
       </main>
       <Footer />
     </>

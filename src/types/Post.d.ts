@@ -1,5 +1,5 @@
 interface Post {
-  _id: string | undefined;
+  _id: string;
   text: string;
   timestamp: string;
   replies: Reply[];

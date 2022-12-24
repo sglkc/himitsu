@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-200 dark:bg-gray-700 -mx-4 px-4 py-6 text-center">
+    <footer className="bg-stone-200 dark:bg-gray-700 -mx-4 mt-auto px-4 py-6 text-center transition-[background-color]">
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap gap-x-2 gap-y-1 justify-center">
           <span>Built with <a href="https://reactjs.org">React</a></span>

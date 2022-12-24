@@ -6,7 +6,7 @@ dayjs.extend(RelativeTime);
 export default function Reply({ owner, text, timestamp }: Reply) {
   const time = dayjs(timestamp).format('DD/MM/YYYY HH:mm');
   const relative = dayjs(timestamp).fromNow();
-  const className = owner ? 'border-sky-500' : 'border-gray-500';
+  const className = owner ? 'border-blue-500/75' : 'border-gray-500/50';
 
   return (
     <blockquote

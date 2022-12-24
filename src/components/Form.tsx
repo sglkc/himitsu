@@ -9,12 +9,13 @@ interface Props {
 export default function Form({ className }: Props) {
   return (
     <form className={'bg-stone-50 dark:bg-gray-800 p-4 mx-auto rounded-md max-w-xl transition-[background-color] ' + className}>
-      <label className="mb-2 block text-lg font-bold text-center">Send an anonymous message to me!</label>
+      <label className="mb-4 block text-xl font-bold text-center">Send an anonymous message to me!</label>
       <textarea
         className="bg-transparent p-1 w-full border-2 border-solid border-gray-300 dark:border-gray-600 rounded-md resize-none transition-[border-color] focus:border-gray-400 focus:dark:border-gray-500 focus:outline-none"
         name="message"
-        placeholder="Start typing here"
-        maxLength={255}
+        placeholder="Type here"
+        maxLength={128}
+        rows={3}
       />
       <p className="mb-2">
         <small>
@@ -23,11 +24,11 @@ export default function Form({ className }: Props) {
         </small>
       </p>
       <div className="flex justify-between">
-        <Button className="bg-zinc-200 dark:bg-zinc-900 hover:outline-zinc-300 hover:dark:outline-zinc-600">
+        <Button className="bg-zinc-200/50 dark:bg-zinc-900 hover:outline-zinc-300 hover:dark:outline-zinc-700">
           <Mail className="m-auto dark:invert" size={18} />
           Send Privately
         </Button>
-        <Button className="bg-blue-100 dark:bg-blue-800 hover:outline-blue-200 hover:dark:outline-blue-600">
+        <Button className="bg-blue-100 dark:bg-blue-800 hover:outline-blue-200 hover:dark:outline-blue-700">
           Send
           <Send className="m-auto dark:invert" size={18} />
         </Button>
