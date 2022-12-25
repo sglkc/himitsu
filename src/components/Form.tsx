@@ -7,11 +7,7 @@ import Send from '@/assets/Send';
 import Alert, { Props as AlertProps } from './Alert';
 import Button from './Button';
 
-interface Props {
-  className?: string;
-}
-
-export default function Form({ className }: Props) {
+export default function Form() {
   const [loading, setLoading] = useState<boolean>(false);
   const [alert, setAlert] = useState<AlertProps | false>(false);
   const shouldUpdate = useContext(UpdateContext);
@@ -46,11 +42,14 @@ export default function Form({ className }: Props) {
 
   return (
     <div
-      className={'bg-stone-50 dark:bg-gray-800 p-4 mx-auto rounded-md max-w-xl transition-[background-color] ' + className}
+      className="bg-stone-50 dark:bg-gray-800 p-4 mx-auto rounded-md w-full sm:w-[32rem] transition-[background-color]"
     >
-      <label className="mb-4 block text-xl font-bold text-center">
-        Send an anonymous message to me!
+      <label className="mb-2 block text-xl font-bold text-center">
+        Write a message!
       </label>
+      <p className="mb-4 text-center">
+        You can write anything: for me, for yourself, or for everyone.
+      </p>
       <textarea
         ref={message}
         className="bg-transparent p-1 w-full border-2 border-solid border-gray-300 dark:border-gray-600 rounded-md resize-none transition-[border-color] focus:border-gray-400 focus:dark:border-gray-500 focus:outline-none"
@@ -60,10 +59,10 @@ export default function Form({ className }: Props) {
         maxLength={128}
         rows={3}
       />
-      <p className="mb-2">
-        <small>
-          <strong>Send Privately</strong> hides your message, but you won't be
-          able to receive any replies!
+      <p className="mb-4">
+        <small className="leading-[.5rem]">
+          <strong>Send Privately</strong> hides your message from everyone
+          except me, but you won't be getting any replies!
         </small>
       </p>
       <div className="flex justify-between">

@@ -34,7 +34,7 @@ function App() {
 
   return (
     <UpdateContext.Provider value={setUpdate}>
-      <nav className="flex justify-between sm:justify-evenly gap-4">
+      <nav className="sm:mx-auto flex justify-between gap-4 sm:w-[32rem]">
         <Auth />
         <Theme />
       </nav>

@@ -27,7 +27,6 @@ export const handler: Handler = async (event) => {
             replies: {
               owner: isOwner,
               text,
-              replies: [],
               timestamp: new Date().toISOString()
             }
           }

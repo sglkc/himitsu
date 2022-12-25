@@ -12,7 +12,6 @@ export default function Auth() {
 
     if (!password || !password.trim().length) {
       localStorage.removeItem('himitsu_password');
-      window.alert('Password cleared');
       shouldUpdate(true);
       return;
     }
