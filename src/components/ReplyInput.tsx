@@ -28,8 +28,15 @@ export default function ReplyInput({ id, addReply }: Props) {
     setLoading(true);
 
     axios
-      .post('/.netlify/functions/reply', { id, text: message.current!.value })
-      .then((res) => addReply({ text: res.data.message }))
+      .post(
+        '/.netlify/functions/reply',
+        { id, text: message.current!.value },
+        { headers: { authorization: localStorage.getItem('himitsu_password') }}
+      )
+      .then((res) => addReply({
+        owner: res.data.owner,
+        text: res.data.message
+      }))
       .catch(() => setAlert({
         text: 'An unexpected error has occured :(',
         error: true
@@ -65,6 +72,6 @@ export default function ReplyInput({ id, addReply }: Props) {
         }
       </form>
       { alert && <Alert className="text-sm" {...alert} /> }
-    </>
+      </>
   );
 }

@@ -9,6 +9,7 @@ export const handler: Handler = async (event) => {
 
     if (!event.body) throw 'body is empty';
 
+    const isOwner = event.headers?.authorization === process.env.WEB_PASSWORD;
     const { text: message, id } = JSON.parse(event.body);
     const text = message.trim();
 
@@ -24,7 +25,7 @@ export const handler: Handler = async (event) => {
         {
           $push: {
             replies: {
-              owner: false,
+              owner: isOwner,
               text,
               replies: [],
               timestamp: new Date().toISOString()
@@ -35,7 +36,11 @@ export const handler: Handler = async (event) => {
 
       return {
         statusCode: 200,
-        body: JSON.stringify({ message: text, result: 'reply posted' })
+        body: JSON.stringify({
+          owner: isOwner,
+          message: text,
+          result: 'reply posted'
+        })
       };
     } catch(err) {
       return {

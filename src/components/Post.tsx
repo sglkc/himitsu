@@ -17,7 +17,12 @@ export default function Post(props: Post) {
 
   return (
     <div className="bg-stone-50 dark:bg-gray-800 p-4 h-fit rounded-md transition-[background-color]">
-      <small className="opacity-70">{ time }</small>
+      <div className="flex justify-between">
+        <small className="opacity-70">{ time }</small>
+        { props.private &&
+          <small className="bg-red-200 dark:bg-red-900 px-2 rounded-md">PRIVATE</small>
+        }
+      </div>
       <p className="mt-2 mb-4 text-xl font-extrabold">{ props.text }</p>
       <div className="flex flex-col gap-2">
         { replies.map((reply, i) => <Reply key={i} {...reply} />) }

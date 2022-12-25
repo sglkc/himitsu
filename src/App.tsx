@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Repeat from './assets/Repeat';
 import Alert, { Props as AlertProps } from './components/Alert';
+import Auth from './components/Auth';
 import Footer from './components/Footer';
 import Form from './components/Form';
 import Post from './components/Post';
@@ -18,7 +19,11 @@ function App() {
     if (!shouldUpdate) return;
 
     axios
-      .get('/.netlify/functions/get')
+      .get('/.netlify/functions/get', {
+        headers: {
+          authorization: localStorage.getItem('himitsu_password')
+        }
+      })
       .then(({ data }) => setPosts(data))
       .catch(() => setAlert({
         text: 'Error getting messages, try again later :(',
@@ -30,10 +35,14 @@ function App() {
   return (
     <UpdateContext.Provider value={setUpdate}>
       <nav className="flex justify-between sm:justify-evenly gap-4">
-        <h1 className="my-auto text-xl font-bold">himitsu | ヒミツ</h1>
+        <Auth />
         <Theme />
       </nav>
-      <Form />
+      { localStorage.getItem('himitsu_password') ?
+          <h1 className="text-center text-xl font-bold">Owner Mode</h1>
+          :
+          <Form />
+      }
       { alert && <Alert className="mx-auto" {...alert} /> }
       { !shouldUpdate ?
         <main className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:max-w-4xl">
