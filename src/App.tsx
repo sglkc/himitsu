@@ -36,7 +36,7 @@ function App() {
       <Form />
       { alert && <Alert className="mx-auto" {...alert} /> }
       { !shouldUpdate ?
-        <main className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <main className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:max-w-4xl">
           { posts.map((post: Post) => <Post key={post._id} {...post} />) }
         </main>
         :

@@ -11,6 +11,10 @@ export default function Post(props: Post) {
     setReplies(props.replies);
   }
 
+  function addReply(reply: Reply) {
+    setReplies([...replies, reply]);
+  }
+
   return (
     <div className="bg-stone-50 dark:bg-gray-800 p-4 h-fit rounded-md transition-[background-color]">
       <small className="opacity-70">{ time }</small>
@@ -25,7 +29,7 @@ export default function Post(props: Post) {
             <small>Read +{ props.replies.length - replies.length } replies</small>
           </div>
           :
-          <ReplyInput id={props._id} />
+          <ReplyInput id={props._id} addReply={addReply} />
         }
       </div>
     </div>

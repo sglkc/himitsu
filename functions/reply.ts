@@ -1,4 +1,5 @@
 import { Handler } from '@netlify/functions';
+import { ObjectId } from 'mongodb';
 import Collection from './Collection';
 
 export const handler: Handler = async (event) => {
@@ -8,26 +9,33 @@ export const handler: Handler = async (event) => {
 
     if (!event.body) throw 'body is empty';
 
-    const { message, private: isPrivate } = JSON.parse(event.body);
+    const { text: message, id } = JSON.parse(event.body);
     const text = message.trim();
 
-    if (text.length === 0) throw 'message must not be empty';
+    if (text.length === 0) throw 'reply must not be empty';
     if (text.length > 256)
-    throw 'message must not be longer than 256 characters';
+    throw 'reply must not be longer than 256 characters';
 
     try {
       const collection = await Collection();
 
-      await collection.insertOne({
-        private: isPrivate,
-        text,
-        replies: [],
-        timestamp: new Date().toISOString()
-      });
+      await collection.updateOne(
+        { _id: new ObjectId(id) },
+        {
+          $push: {
+            replies: {
+              owner: false,
+              text,
+              replies: [],
+              timestamp: new Date().toISOString()
+            }
+          }
+        }
+      );
 
       return {
         statusCode: 200,
-        body: JSON.stringify({ message: text, result: 'message posted' })
+        body: JSON.stringify({ message: text, result: 'reply posted' })
       };
     } catch(err) {
       return {

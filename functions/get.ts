@@ -5,7 +5,7 @@ export const handler: Handler = async () => {
   try {
     const collection = await Collection();
     const results = await collection
-      .find({})
+      .find({ private: false })
       .sort({ timestamp: -1 })
       .toArray();
 

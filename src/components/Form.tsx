@@ -34,7 +34,7 @@ export default function Form({ className }: Props) {
       })
       .then(() => {
         message.current!.value = '';
-        shouldUpdate(true);
+        shouldUpdate(!isPrivate);
         setAlert({ text: 'Thank you for the message!' });
       })
       .catch(() => setAlert({
