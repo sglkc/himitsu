@@ -20,3 +20,14 @@ a {
   text-decoration-color: #aaa;
   text-decoration-style: dashed;
 }
+
+@keyframes slide-down {
+  from {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}

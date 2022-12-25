@@ -4,7 +4,10 @@ import Collection from './Collection';
 export const handler: Handler = async () => {
   try {
     const collection = await Collection();
-    const results = await collection.find({}).toArray();
+    const results = await collection
+      .find({})
+      .sort({ timestamp: -1 })
+      .toArray();
 
     return {
       statusCode: 200,
